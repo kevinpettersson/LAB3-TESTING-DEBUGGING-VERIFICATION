@@ -1,0 +1,19 @@
+Error: a postcondition could not be proved on this return path
+Could not prove: a > b
+
+Dafny reports this beacuse our post-condition ensures that a > b, 
+but the method only checks when x > y and then assigns a, b their according values.
+If x == y then the else branch would also be false since it would break the post-condition.
+
+
+
+
+(program statement)
+S = if x > y then x := a, y := b else x := b, y := a
+
+(post-condition)
+R = a > b
+
+(weakest pre-condition)
+
+wp(S, R) = 
