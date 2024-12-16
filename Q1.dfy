@@ -17,8 +17,7 @@ method M(x : int, y : int) returns (a : int, b : int)
   if (x > y){
     a := x;
     b := y;
-  }
-  else{
+  } else{
     a := y; 
     b := x;
   }
@@ -37,7 +36,7 @@ method M1(x : int, y : int) returns (a : int, b : int)
   }
 }
 
-// Added pre-condition, the methods require that the inputs aren't equal.
+// Added pre-condition, the method require that the inputs aren't equal.
 method M2(x : int, y : int) returns (a : int, b : int) 
   requires x != y 
   ensures a > b
@@ -51,15 +50,15 @@ method M2(x : int, y : int) returns (a : int, b : int)
   }
 }
 
-// increment x with 1 in the case x >= y satisfy the post-condition a > b.
+// Increment x with 1 in the case x >= y, 
+// this ensures we satisfy the post-condition a > b.
 method M3(x : int, y : int) returns (a : int, b : int) 
   ensures a > b
 {
   if (x >= y){
     a := x + 1;
     b := y;
-  }
-  else{
+  } else{
     a := y; 
     b := x;
   }
