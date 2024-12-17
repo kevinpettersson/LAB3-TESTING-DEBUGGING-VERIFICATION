@@ -98,17 +98,21 @@ class CircularMemory{
     }
 
     // Question 3 for Lab 3
-  method DoubleCapacity()
-    modifies ???
-    requires Valid()
-    ensures Valid()
-    ensures cells.Length == 2 * old(cells.Length)
-    ensures read_position == old(read_position)
-    ensures write_position == old(write_position)
-    ensures forall j : int :: 0 <= j < old(cells.Length) ==> cells[j] == old(cells[j])
-    ensures forall j : int :: old(cells.Length) <= j < cells.Length ==> cells[j] == 0
-  {
-    // one or more loops to double the capacity of cells
-    // the most important part is the loop invariants!
-  }
+    method DoubleCapacity()
+        modifies this, this`cells
+        requires Valid()
+        ensures Valid()
+        ensures cells.Length == 2 * old(cells.Length)
+        ensures read_position == old(read_position)
+        ensures write_position == old(write_position)
+        ensures forall j : int :: 0 <= j < old(cells.Length) ==> cells[j] == old(cells[j])
+        ensures forall j : int :: old(cells.Length) <= j < cells.Length ==> cells[j] == 0
+    {
+        // one or more loops to double the capacity of cells
+        // the most important part is the loop invariants!
+        while(){
+
+        }
+        
+    }
 }
