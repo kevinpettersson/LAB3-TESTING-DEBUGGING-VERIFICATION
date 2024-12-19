@@ -99,7 +99,7 @@ class CircularMemory{
 
     // Question 3 for Lab 3
     method DoubleCapacity()
-        modifies this, this`cells
+        modifies this`cells
         requires Valid()
         ensures Valid()
         ensures cells.Length == 2 * old(cells.Length)
@@ -108,11 +108,29 @@ class CircularMemory{
         ensures forall j : int :: 0 <= j < old(cells.Length) ==> cells[j] == old(cells[j])
         ensures forall j : int :: old(cells.Length) <= j < cells.Length ==> cells[j] == 0
     {
-        // one or more loops to double the capacity of cells
-        // the most important part is the loop invariants!
-        while(){
+
+        var oldCells        := cells;
+        var newCapacity     := 2 * cells.Length;
+        var newCells        := new int[newCapacity];
+        var i               := 0; 
+        while(i < newCapacity)
+            invariant 0 <= i <= newCapacity
+            invariant forall j : int :: 0 <= j < oldCells.Length && j < i ==> newCells[j] == oldCells[j] 
+            invariant forall j : int :: old(cells.Length) <= j < i ==> newCells[j] == 0 
+            decreases newCapacity - i // Unsure if needed or if Dafny automatically verifies.
+        
+        {   
+            if(i < oldCells.Length){
+                newCells[i] := oldCells[i];
+
+            }else{
+                newCells[i] := 0;
+
+            }
+            i := i + 1;
 
         }
-        
+        cells := newCells;
     }
+
 }
