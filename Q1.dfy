@@ -11,6 +11,7 @@
   To fix this there needs to be an pre-condition like (requires x != y), 
   this way Dafny can prove that all inputs except when (x == y) is allowed and then the post-condition will hold.
 */
+/*
 method M(x : int, y : int) returns (a : int, b : int) 
   ensures a > b
 {
@@ -22,6 +23,7 @@ method M(x : int, y : int) returns (a : int, b : int)
     b := x;
   }
 }
+*/
 
 // Changed the post-condition, the method now allows the output to be equal.
 method M1(x : int, y : int) returns (a : int, b : int) 
